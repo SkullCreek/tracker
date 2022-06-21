@@ -16,7 +16,7 @@ document.getElementById("loginForm").addEventListener("submit", (event) => {
 
 auth.onAuthStateChanged((user)=>{
     if(user){
-        location.replace("../pages/tracker.html");
+        location.replace("/pages/tracker.html");
     }
 });
 
