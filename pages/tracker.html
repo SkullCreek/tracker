@@ -4,9 +4,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="tracker.css">
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
     <title>Tracker</title>
 </head>
 <body>
-    <h1>Success</h1>
+    <main>
+        <nav>
+            <p><img src="logo.svg" alt="">TAKE CARE</p>
+        </nav>
+        <section>
+            <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_ug4q6zc4.json"  background="transparent"  speed="1"  style="width: 100%;"  loop autoplay></lottie-player>
+            <button id="track">Start Tracking</button>
+        </section>
+    </main>
+    <script src="tracker.js" type="module"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </body>
 </html>

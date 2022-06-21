@@ -15,3 +15,27 @@ auth.onAuthStateChanged((user)=>{
         location.replace("../index.html");
     }
 });
+
+document.getElementById("track").onclick = () =>{
+    finder();
+    setInterval(()=>{
+        finder();    
+    },1000);
+}
+
+const finder = () => {
+    if(!navigator.geolocation){
+        console.log("your browser doesnot support geolocation feature!");
+    }
+    else{
+        navigator.geolocation.getCurrentPosition(getPosition);
+    }
+    
+    function getPosition(position){
+        var lat = position.coords.latitude;
+        var long = position.coords.longitude;
+        var accuracy = position.coords.accuracy;
+        console.log(lat,long,accuracy);
+    }
+}
+
