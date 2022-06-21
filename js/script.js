@@ -31,6 +31,21 @@ const login = () => {
     });
 }
 
+const signup = () =>{
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    auth.createUserWithEmailAndPassword(email, password)
+    .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        document.getElementById("error").innerHTML = error.message;
+    });
+}
+
 document.getElementById("login-button").onclick = () => {
     login();
+}
+
+document.getElementById("signup-button").onclick = () => {
+    signup();
 }
