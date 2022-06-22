@@ -9,33 +9,48 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 const auth =  firebase.auth();
-
+let database = firebase.database();
+var lat;
+var long;
+var accuracy;
+let username;
 auth.onAuthStateChanged((user)=>{
     if(!user){
         location.replace("../index.html");
     }
+    else{
+        username = user.email;
+        let name = username.split("@");
+        document.getElementById("track").onclick = () =>{
+            document.getElementById("track").disabled = true;
+            finder();
+            setInterval(()=>{
+                finder();    
+            },5000);
+        }
+        
+        const finder = () => {
+            if(!navigator.geolocation){
+                console.log("your browser doesnot support geolocation feature!");
+            }
+            else{
+                navigator.geolocation.getCurrentPosition(getPosition);
+            }
+            
+            function getPosition(position){
+                lat = position.coords.latitude;
+                long = position.coords.longitude;
+                accuracy = position.coords.accuracy;
+                database.ref(name[0]).update({
+                    latitude: lat,
+                    longitude: long,
+                    accuracy: accuracy
+                });
+            }
+        }
+    }
 });
 
-document.getElementById("track").onclick = () =>{
-    finder();
-    setInterval(()=>{
-        finder();    
-    },1000);
-}
 
-const finder = () => {
-    if(!navigator.geolocation){
-        console.log("your browser doesnot support geolocation feature!");
-    }
-    else{
-        navigator.geolocation.getCurrentPosition(getPosition);
-    }
-    
-    function getPosition(position){
-        var lat = position.coords.latitude;
-        var long = position.coords.longitude;
-        var accuracy = position.coords.accuracy;
-        console.log(lat,long,accuracy);
-    }
-}
+
 
