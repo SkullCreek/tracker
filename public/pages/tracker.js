@@ -20,7 +20,8 @@ auth.onAuthStateChanged((user)=>{
     }
     else{
         username = user.email;
-        let name = username.split("@");
+        let dummyname = username.split("@");
+        let name = dummyname[0].split(".");
         document.getElementById("track").onclick = () =>{
             document.getElementById("track").disabled = true;
             finder();
